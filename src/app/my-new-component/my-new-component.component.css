@@ -1,0 +1,46 @@
+/*Definiendo estilos*/
+
+a{
+  cursor: pointer;
+}
+#exTab1 .tab-content {
+  color : black;
+  padding : 5px 15px;
+  background-color: #F3EDED;
+  border: 1px solid #ECE8E8;
+	border-radius:8px;
+}
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+#registros {
+  display: none;
+}
+
+#registro {
+  display: none;
+}
+
+#actualiza{
+  display: none;
+}
+
+#divAcceso{
+  display: none;
+}
+
+.Icon span{
+      background: #A8A6A6;
+      padding: 20px;
+      border-radius: 120px;
+}
+
+.Icon{
+     margin-top: 10px;
+     margin-bottom:10px; 
+     color: #FFF;
+     font-size: 50px;
+     text-align: center;
+}
