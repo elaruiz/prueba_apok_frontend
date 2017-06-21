@@ -12,7 +12,7 @@
       <div class="Icon">
         <span class="glyphicon glyphicon-user"></span>
       </div>
-      <form #signupForm="ngForm" (ngSubmit)="registerUser(cliente,n)">
+      <form #signupForm="ngForm" >
         <div class="input-group input-group-lg">
             <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
             <input type="text"  class="form-control" name="nombre" id="nombre" placeholder="Nombre" aria-describedby="sizing-addon1" [(ngModel)]="usuario.nombre" required>
@@ -47,8 +47,8 @@
 				</div>
         <br>
 
-        <button id="registra" type="submit"  class="btn btn-default">Registrar</button>
-        <button id="actualiza" type="submit"  class="btn btn-default">Actualizar</button>
+        <button id="registra" type="submit" (click)= "registerUser()"  class="btn btn-default">Registrar</button>
+        <button id="actualiza" type="submit" (click)= "updateUser(cliente)" class="btn btn-default">Actualizar</button>
         
       </form>
       <br>
@@ -114,7 +114,7 @@
           </li>
         </ul>
         <div id="divAcceso" class="container">
-          <form #accessForm="ngForm" (ngSubmit)="registraAcceso(cliente)">
+          <form #accessForm="ngForm">
           <div class="form-group">
             <label for="url">Url</label>
             <input type="text"  class="form-control" name="url" id="url" [(ngModel)]="usuario.accesos.url">
@@ -129,7 +129,8 @@
             <label for="pass">Password</label>
             <input type="text"  class="form-control" name="pass" id="pass" [(ngModel)]="usuario.accesos.pass">
           </div>
-          <button id="registraAcceso" type="submit"  class="btn btn-default">Agregar</button>        
+          <button *ngIf="e==false" (click)="registraAcceso(cliente)" id="registraAcceso" type="submit"  class="btn btn-default">Agregar</button>
+          <button *ngIf="e==true" (click)="actualizaAcceso(cliente)" id="updateAcceso" type="submit"  class="btn btn-default">Editar</button>        
         </form>
       </div>
 

@@ -74,9 +74,8 @@ public usuario = {
       }
     );
   }
-//Registra o actualiza dependiendo si el cliente es nuevo
-registerUser(cliente,n) {
-  if (n===true) {
+//Registra si el cliente es nuevo
+registerUser() {
     this._myNewServiceService.registrar(this.usuario).subscribe(
       res=> {
         console.log(res.json());
@@ -86,9 +85,11 @@ registerUser(cliente,n) {
         document.getElementById('tab2').click();
       }
     );
-  
-  }
-  if (n===false) {
+ 
+}
+
+// Actualiza el cliente existente
+updateUser(cliente) {
     this._myNewServiceService.editar(this.usuario,cliente).subscribe(
       res=> {
         console.log(res.json());
@@ -98,7 +99,7 @@ registerUser(cliente,n) {
         document.getElementById('tab2').click();
       }
     );  
-}
+
 }
 
   actualizar(cliente){   
@@ -113,7 +114,7 @@ registerUser(cliente,n) {
 
     document.getElementById("registra").style.display = "none";
     document.getElementById("actualiza").style.display = "inline-block";
-    this.n = false;
+   
     
   }
 
@@ -126,7 +127,7 @@ registerUser(cliente,n) {
      this.usuario.contacto = "";
     document.getElementById("registra").style.display = "inline-block";
     document.getElementById("actualiza").style.display = "none";
-    this.n = true;
+
   }
 
   aggAcceso(){
@@ -136,9 +137,8 @@ registerUser(cliente,n) {
     this.usuario.accesos.pass = "";
     this.e = false;
   }
-//Crea un nuevo acceso o actualiza uno existente
+//Crea un nuevo acceso 
   registraAcceso(cliente){
-    if (this.e === false) {
       this._myNewServiceService.agregaAcceso(this.usuario.accesos,cliente).subscribe(
       res=> {
         console.log(res.json());
@@ -148,20 +148,21 @@ registerUser(cliente,n) {
         document.getElementById('tab2').click();
         document.getElementById("divAcceso").style.display = "none"
       }
-      );
-    }
-    if (this.e === true) {
-     this._myNewServiceService.editaAcceso(this.usuario.accesos.url, this.usuario.accesos.user,this.usuario.accesos.pass,cliente, this.acceso).subscribe(
-      res=> {
-        console.log(res.json());
-        
-        this.consulta(cliente.rif);
-        this.div2();
-        document.getElementById('tab2').click();
-        document.getElementById("divAcceso").style.display = "none"
-      }
-      );
-    }
+      ); 
+  }
+// Actualiza un acceso existente
+  actualizaAcceso(cliente){
+      this._myNewServiceService.editaAcceso(this.usuario.accesos.url, this.usuario.accesos.user,this.usuario.accesos.pass, this.acceso).subscribe(
+        res=> {
+          console.log(res.json());
+          
+          this.consulta(cliente.rif);
+          this.div2();
+          document.getElementById('tab2').click();
+          document.getElementById("divAcceso").style.display = "none"
+        }
+        );
+      
   }
 
   updateAcceso(acceso){
@@ -174,7 +175,7 @@ registerUser(cliente,n) {
   }
 //Elimina un acceso
   eliminaAcceso(acceso, cliente){
-    this._myNewServiceService.eliminaAcceso(acceso, cliente).subscribe(
+    this._myNewServiceService.eliminaAcceso(acceso).subscribe(
       res=> {
         console.log(res.json());
         

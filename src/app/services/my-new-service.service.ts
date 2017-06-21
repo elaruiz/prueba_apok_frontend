@@ -81,31 +81,30 @@ export class MyNewServiceService {
       return this._http.put('http://localhost:3000/acceso/'+id, body, { headers });
   }
 
-  editaAcceso(url,user, pass, cliente,a){
+  editaAcceso(url,user, pass, a){
       
       const headers = new Headers();
       headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-      var id = cliente._id;
+     
       var idAcceso = a;
       var url = url;
       var user = user;
       var pass = pass;
       
-      const obj = { url:url, user:user, pass:pass};
+      const obj = { url:url, username:user, password:pass};
       
       const body = 'data=' + JSON.stringify(obj);
       
-      return this._http.put('http://localhost:3000/acceso/'+id+'/'+idAcceso, body, { headers });
+      return this._http.put('http://localhost:3000/accesos/'+idAcceso, body, { headers });
   }
 
- eliminaAcceso(acceso, cliente){
-   var id = cliente._id;
+ eliminaAcceso(acceso){
    var idAcceso = acceso._id;
    let headers: Headers;
    let options: RequestOptions;
    headers = new Headers({ 'Content-Type': 'application/json','Accept': 'q=0.8;application/json;q=0.9' });
    options = new RequestOptions({ headers: headers });
-   let a= this._http.delete('http://localhost:3000/acceso/'+id+'/'+idAcceso,options);
+   let a= this._http.delete('http://localhost:3000/acceso/'+idAcceso,options);
     return a;
   
   }
